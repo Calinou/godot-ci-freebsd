@@ -1,0 +1,25 @@
+freebsd_instance:
+  image: freebsd-12-0-release-amd64
+
+build_task:
+  name: Build
+  timeout_in: 120m
+  env:
+    SCONS_FLAGS: progress=no debug_symbols=no module_webm_enabled=no -j2
+
+  install_script:
+    - pkg install -y git scons pkgconf xorg-libraries libXcursor libXrandr libXi xorgproto libGLU alsa-lib pulseaudio yasm
+    - git clone https://github.com/godotengine/godot.git --depth=1
+
+  matrix:
+    - name: Editor + Headless editor (release)
+      build_script:
+        - cd godot/
+        - scons platform=x11 tools=yes target=release_debug $SCONS_FLAGS
+        - scons platform=server tools=yes target=release_debug $SCONS_FLAGS
+
+    - name: Export template + Dedicated server (release)
+      build_script:
+        - cd godot/
+        - scons platform=x11 tools=no target=release $SCONS_FLAGS
+        - scons platform=server tools=no target=release $SCONS_FLAGS
