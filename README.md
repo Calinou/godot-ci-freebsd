@@ -1,6 +1,6 @@
 # Godot continuous integration on FreeBSD
 
-**[View on Cirrus CI](https://github.com/Calinou/godot-ci-freebsd)**
+**[View on Cirrus CI](https://cirrus-ci.com/github/Calinou/godot-ci-freebsd)**
 
 This repository contains a Cirrus CI file that is used to build Godot
 in various configurations on FreeBSD. It's used to check for regressions
