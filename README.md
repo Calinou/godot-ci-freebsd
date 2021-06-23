@@ -8,7 +8,7 @@ in the build system. Builds are currently scheduled manually.
 
 ## License
 
-Copyright © 2019-2020 Hugo Locurcio
+Copyright © 2019-2021 Hugo Locurcio
 
 Unless otherwise specified, files in this repository are licensed under
 the MIT license. See [LICENSE.md](LICENSE.md) for more information.
