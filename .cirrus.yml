@@ -1,5 +1,7 @@
 freebsd_instance:
   image_family: freebsd-13-0
+  cpu: 4
+  memory: 8G
 
 task:
   name: Build
@@ -8,7 +10,7 @@ task:
     SCONS_FLAGS: progress=no debug_symbols=no module_webm_enabled=no -j2
 
   install_script:
-    - pkg install -y py37-pip git pkgconf xorg-libraries libXcursor libXrandr libXi xorgproto libGLU alsa-lib pulseaudio yasm
+    - pkg install -y py38-pip git pkgconf xorg-libraries libXcursor libXrandr libXi xorgproto libGLU alsa-lib pulseaudio yasm
     - pip install scons
     - git clone https://github.com/godotengine/godot.git --depth=1
 
@@ -16,9 +18,9 @@ task:
     - name: Editor (release)
       build_script:
         - cd godot/
-        - scons platform=x11 tools=yes target=release_debug $SCONS_FLAGS
+        - scons platform=linuxbsd tools=yes target=release_debug $SCONS_FLAGS
 
     - name: Export template (release)
       build_script:
         - cd godot/
-        - scons platform=x11 tools=no target=release $SCONS_FLAGS
+        - scons platform=linuxbsd tools=no target=release $SCONS_FLAGS
